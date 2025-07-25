@@ -1,4 +1,4 @@
-const {getAllCarsService, getCarByIdService, addCarService} = require("../services/cars.services")
+const {getAllCarsService, getCarByIdService, addCarService, updateCarService, deleteCarService} = require("../services/cars.services")
 
 
 
@@ -27,11 +27,25 @@ const addCarController = async (request, response) => {
     response.json(newCar)
 }
 
+const updateCarController = async (request, response) => {
+    const carToEdit = await updateCarService(request)
+
+    response.json(carToEdit)
+}
+
+const deleteCarController = async (request, response) => {
+    const carToDelete = await deleteCarService(request)
+
+    response.json(carToDelete)
+}
+
 // La logica de las funciones (se delega)
 // -> services.js
 
 module.exports = {
     getAllCarsController,
     getCarByIdController,
-    addCarController
+    addCarController,
+    updateCarController,
+    deleteCarController
 }
